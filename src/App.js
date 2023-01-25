@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { Form } from "@rjsf/mui";
+import validator from "@rjsf/validator-ajv8";
+import CustomTextWidget from "./CustomTextWidget";
+import { CustomFieldTemplate } from "./FieldTemplate";
 
 function App() {
+  const schema = 
+    {
+      "title": "A customizable registration form",
+      "description": "A simple form with additional properties example.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "description": "Additional property"
+      },
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "title": "First name",
+          "description": "First name or given name"
+        },
+        "lastName": {
+          "type": "string",
+          "title": "Name",
+          "description": "Last name, family name, or surname"
+        }
+      }
+    }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{width: 500, margin: 'auto'}}>
+      <Form schema={schema} widgets={{
+        TextWidget: CustomTextWidget,
+      }}  templates={{
+        // FieldTemplate: CustomFieldTemplate, // not quite working for the additionalProperties
+      }} liveValidate validator={validator} />
     </div>
   );
 }
