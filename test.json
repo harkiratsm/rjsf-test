@@ -1,19 +1,11 @@
 {
-  "title": "A customizable registration form",
-    "description": "A simple form with additional properties example.",
-    "type": "object",
-    "required": ["firstName", "lastName"],
-    "additionalProperties": {
-      "type": "string"
-    },
-    "properties": {
-      "firstName": {
-        "type": "string",
-        "title": "First name"
-      },
-      "lastName": {
-        "type": "string",
-        "title": "Last name"
-      }
+  "$id": "https://schema.meshery.io/core.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Reusable core schema elements",
+  "definitions": {
+    "inputString": {
+      "type": "string",
+      "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$"
     }
+  }
 }
